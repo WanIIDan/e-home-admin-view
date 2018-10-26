@@ -29,7 +29,7 @@
                         <el-button
                             size="mini"
                             type="primary"
-                            @click="handleDetails(scope.row._id)">查看详情
+                            @click="handleEdit(scope.row._id)">编辑
                         </el-button>
                         <el-button
                             size="mini"

@@ -22,6 +22,9 @@
                         <el-radio v-model="radio" label="2">女</el-radio>
                     </template>
                 </el-form-item>
+                <el-form-item label="手机号：">
+                    <el-input v-model="formData.phone"></el-input>
+                </el-form-item>
                 <el-form-item label="个性签名：">
                     <el-input v-model="formData.desc"></el-input>
                 </el-form-item>
@@ -59,7 +62,7 @@
             handleClick() {
                 this.$axios.post('/admin/adminUser', this.formData).then(res=>{
                     if(res.code == 200) {
-                        this.$message(res.msg)
+                        this.$message.success(res.msg)
                         this.$router.push('/layout/adminUser')
                     }
                 })

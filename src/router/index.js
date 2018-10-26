@@ -75,6 +75,14 @@ export default new Router({
           },
           component: () => import('@/views/swiper/add')
         },   
+        {
+          path: 'editSwiper',
+          name: 'editSwiper',
+          meta: {
+            title: '编辑轮播图'
+          },
+          component: () => import('@/views/swiper/add')
+        },   
       ]
     }
   ]

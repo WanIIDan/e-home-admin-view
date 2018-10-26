@@ -14,7 +14,7 @@
                     <el-select v-model="formData.author">
                         <el-option v-for="(item, index) in users" 
                             :key="index" 
-                            :label="item.nickname" 
+                            :label="item.username" 
                             :value="item._id"/>
                     </el-select>
                 </el-form-item>
@@ -110,24 +110,16 @@
             handleClick() {
                 this.$axios.post('/admin/news', this.formData).then(res=>{
                     if(res.code == 200) {
-                        this.$message(res.msg)
+                        this.$message.success(res.msg)
                         this.$router.push('/layout/news')
                     }
                 })
             },
             onEditorChange({ quill, html, text }) {
                 this.formData.contentText = text
-            },
-            getToken() {
-                axios.get('http://upload.yaojunrong.com/getToken').then(res=>{
-                    if(res.data.code == 200) {
-                        this.token = res.data.data
-                    }
-                })
             }
         },
         created() {
-            this.getToken()
             this.getUser()
             this.getCategory()
         },

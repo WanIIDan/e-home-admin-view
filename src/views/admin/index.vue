@@ -11,7 +11,9 @@
                 <el-table-column
                     prop="sex"
                     label="性别"
-                    width="100"/>
+                    width="100">
+                    <div slot-scope="scope">{{scope.row.sex ? '男' : '女'}}</div>
+                </el-table-column>
                 <el-table-column
                     prop="phone"
                     label="手机号"
@@ -63,6 +65,23 @@
                         this.tableData = res.data
                     }
                 })
+            },
+            handleDelete(id) {
+                this.$confirm('此操作将删除一位管理员, 是否继续?', '警告', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.$axios.post('/admin/adminUser/del', {_id: id}).then(res=>{
+                        this.$message.success(res.msg)
+                        this.getData()
+                    })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });          
+                });
             },
         },
         created() {
